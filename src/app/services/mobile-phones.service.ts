@@ -18,10 +18,6 @@ getPhones(): Observable<Phone[]> {
   return of (this.mobilePhones)
 }
 
-addPhones(phone: Phone): void {
-  phone.id = this.generateId();
-  this.mobilePhones.push(phone)
-}
 
 updatePhones(updatedPhones: Phone): void {
   const index = this.mobilePhones.findIndex(onj => onj.id == updatedPhones.id);
