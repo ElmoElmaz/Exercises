@@ -1,0 +1,63 @@
+<div>
+    <h2> Mobile Phones </h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Color</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+        
+            <tr *ngFor="let phone of phone"> 
+            <td>{{phone.id}}</td>
+            <td>{{phone.name}}</td>
+            <td>{{phone.brand}}</td>
+            <td>{{phone.color}}</td>
+            <td>{{phone.price}}</td>
+            <td>
+                <button (click)="selectMobilePhones(phone)"> Edit </button>
+                <button (click)="confirmDeleteMobilePhone(phone)"> Delete </button>
+            </td>
+        </tr>
+    </table>
+
+<div>
+ <h2> {{selectedphone.id == 0? 'Add phone' : 'Edit phone' }}</h2>
+ <label for="phone">Phone Name:</label>
+ <input id="phone" [(ngModel)]="selectedphone.name" placeholder="Enter Phone Name" />
+
+ <label for="phoneBrand">Brand:</label>
+ <input id="phoneBrand" [(ngModel)]="selectedphone.brand" placeholder="Enter Brand" />
+
+ <label for="phoneColor">Color</label>
+ <input id="phoneColor" type="string" [(ngModel)]="selectedphone.color" placeholder="Enter Color"/>
+
+<label for="phonePrice">Price</label>
+<input id=phonePrice [ngModel]="selectedphone.price" placeholder="Enter Price" />
+
+<button *ngIf="selectedphone.id === 0 " (click)="confirmAddPhone()"> Add</button>
+<button *ngIf="selectedphone.id !== 0 " (click)="confirmUpdateMobilePhones()"> Edit</button>
+
+</div>
+
+
+    <app-confirmation-dialog
+    *ngIf="showConfirmationDialog"
+    [action]="actionType"
+    [phoneName]="selectedphone.name"
+    (comfirmed)="handleAction($event)">
+    </app-confirmation-dialog>
+
+    
+</div>
+
+
+
+
+
+
+
+
+
